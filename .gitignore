@@ -1,9 +1,1 @@
-target
-*.class
-.classpath
-.project
-.settings
-jsp-compilation/
-*.jsp
-*.tag
-
+/target
