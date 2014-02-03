@@ -2,7 +2,7 @@ package br.com.caelum.vraptor.paginator.view;
 
 public class Page {
 
-	static final int DEFAULT_NUMBER_OF_ELEMENTS = 10;
+	public static final int DEFAULT_NUMBER_OF_ELEMENTS = 10;
 
 	private final int number;
 	private final int numberOfElements;
@@ -16,9 +16,9 @@ public class Page {
 	}
 
 	public Page(Integer number, Integer numberOfElements) {
-		if(number==null) number= 1;
+		if(number==null || number<1) number= 1;
 		this.number = number;
-		if(numberOfElements==null) numberOfElements = DEFAULT_NUMBER_OF_ELEMENTS;
+		if(numberOfElements==null || numberOfElements < 1) numberOfElements = DEFAULT_NUMBER_OF_ELEMENTS;
 		this.numberOfElements = numberOfElements;
 	}
 

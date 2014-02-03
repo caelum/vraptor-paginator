@@ -6,6 +6,8 @@ import br.com.caelum.vraptor.paginator.view.Page;
 import br.com.caelum.vraptor.paginator.view.Pages;
 
 /**
+ * Represents both the items and the paginator element.
+ * 
  * @author alberto souza
  * @author guilherme silveira
  */
@@ -29,6 +31,8 @@ public class Paginator<T> {
 		return new Pages(currentPage, totalNumberOfPages);
 	}
 	
-	
+	public Page getCurrentPage() {
+		return currentPage;
+	}
 
 }
