@@ -5,13 +5,14 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.junit.Test;
 
-import br.com.caelum.vraptor.paginator.hibernate.HibernateDatabaseTest;
+import br.com.caelum.vraptor.paginator.hibernate.JPADatabaseTest;
 import br.com.caelum.vraptor.paginator.view.Page;
 
 @SuppressWarnings("unchecked")
-public abstract class PagerDAOTest extends HibernateDatabaseTest {
+public abstract class PagerDAOTest extends JPADatabaseTest {
 
 	static final Page FIRST = new Page();
 
@@ -47,7 +48,7 @@ public abstract class PagerDAOTest extends HibernateDatabaseTest {
 	@Test
 	public void should_pick_first_page_as_query() {
 		PagerDAO dao = getPager();
-		Paginator<User> results = dao.paginate(session.createQuery("from User"), FIRST);
+		Paginator<User> results = dao.paginate(manager.unwrap(Session.class).createQuery("from User"), FIRST);
 		assertEquals("1,2,3,...,10," , results.getPages().toContent());
 		assertEquals(1, results.getCurrentPage().getNumber());
 		assertEquals(get(1,2,3,4,5,6,7,8,9,10), results.getVisibleItems());
@@ -56,7 +57,7 @@ public abstract class PagerDAOTest extends HibernateDatabaseTest {
 	@Test
 	public void should_pick_last_page_as_query() {
 		PagerDAO dao = getPager();
-		Paginator<User> results = dao.paginate(session.createQuery("from User"), new Page(4, 30));
+		Paginator<User> results = dao.paginate(manager.unwrap(Session.class).createQuery("from User"), new Page(4, 30));
 		assertEquals("1,2,3,4," , results.getPages().toContent());
 		assertEquals(4, results.getCurrentPage().getNumber());
 		assertEquals(get(91,92,93,94,95,96,97,98,99,100), results.getVisibleItems());
@@ -65,7 +66,7 @@ public abstract class PagerDAOTest extends HibernateDatabaseTest {
 	@Test
 	public void should_pick_first_page_as_query_with_select() {
 		PagerDAO dao = getPager();
-		Paginator<User> results = dao.paginate(session.createQuery("select u from User as u"), FIRST);
+		Paginator<User> results = dao.paginate(manager.unwrap(Session.class).createQuery("select u from User as u"), FIRST);
 		assertEquals("1,2,3,...,10," , results.getPages().toContent());
 		assertEquals(1, results.getCurrentPage().getNumber());
 		assertEquals(get(1,2,3,4,5,6,7,8,9,10), results.getVisibleItems());
@@ -74,7 +75,7 @@ public abstract class PagerDAOTest extends HibernateDatabaseTest {
 	@Test
 	public void should_pick_first_page_as_query_with_select_id() {
 		PagerDAO dao = getPager();
-		Paginator<Integer> results = dao.paginate(session.createQuery("select u.id from User as u"), FIRST);
+		Paginator<Integer> results = dao.paginate(manager.unwrap(Session.class).createQuery("select u.id from User as u"), FIRST);
 		assertEquals("1,2,3,...,10," , results.getPages().toContent());
 		assertEquals(1, results.getCurrentPage().getNumber());
 		assertEquals(Arrays.asList(1,2,3,4,5,6,7,8,9,10), results.getVisibleItems());
@@ -83,13 +84,13 @@ public abstract class PagerDAOTest extends HibernateDatabaseTest {
 	@Test
 	public void should_pick_first_page_as_query_with_select_two_fields() {
 		PagerDAO dao = getPager();
-		Paginator<Integer> results = dao.paginate(session.createQuery("select u.id,u.name from User as u"), FIRST);
+		Paginator<Integer> results = dao.paginate(manager.unwrap(Session.class).createQuery("select u.id,u.name from User as u"), FIRST);
 		assertEquals("1,2,3,...,10," , results.getPages().toContent());
 		assertEquals(1, results.getCurrentPage().getNumber());
 	}
 
 	private List<User> get(Integer... ids) {
-		return session.createQuery("from User where id in :ids order by id").setParameterList("ids", Arrays.asList(ids)).list();
+		return manager.unwrap(Session.class).createQuery("from User where id in :ids order by id").setParameterList("ids", Arrays.asList(ids)).list();
 	}
 
 }
