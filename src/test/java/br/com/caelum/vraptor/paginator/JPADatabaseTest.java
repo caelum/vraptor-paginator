@@ -1,4 +1,4 @@
-package br.com.caelum.vraptor.paginator.hibernate;
+package br.com.caelum.vraptor.paginator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,8 +9,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-
-import br.com.caelum.vraptor.paginator.User;
 
 public class JPADatabaseTest {
 
