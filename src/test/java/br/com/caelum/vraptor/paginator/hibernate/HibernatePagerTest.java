@@ -40,9 +40,9 @@ public class HibernatePagerTest extends PagerDAOTest {
 	@Test
 	public void should_pick_last_page_as_query_with_conditions() {
 		Pager dao = getPager();
-		Paginator<User> results = dao.paginate(query("user","from User user where id > :id").setParameter("id",0), new Page(4, 30));
-		assertEquals("1,2,3,4," , results.getPages().toContent());
-		assertEquals(4, results.getCurrentPage().getNumber());
-		assertEquals(get(91,92,93,94,95,96,97,98,99,100), results.getVisibleItems());
+		Paginator<User> results = dao.paginate(query("user","from User user where id > :id").setParameter("id",75), new Page(3, 10));
+		assertEquals("1,2,3," , results.getPages().toContent());
+		assertEquals(3, results.getCurrentPage().getNumber());
+		assertEquals(get(96,97,98,99,100), results.getVisibleItems());
 	}
 }

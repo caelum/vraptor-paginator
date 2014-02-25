@@ -49,12 +49,12 @@ public class JPAPagerTest extends PagerDAOTest {
 
 			@Override
 			public Pair<Query> statementWith(String select) {
-				return new Pair<Query>(manager.createQuery("select u from User u where id > :id").setParameter("id",0), "select u from User u where id > :id");
+				return new Pair<Query>(manager.createQuery("select u from User u where id > :id").setParameter("id",75), "select u from User u where id > :id");
 			}
 		};
-		Paginator<User> results = dao.paginate(querier, new Page(4, 30));
-		assertEquals("1,2,3,4," , results.getPages().toContent());
-		assertEquals(4, results.getCurrentPage().getNumber());
-		assertEquals(get(91,92,93,94,95,96,97,98,99,100), results.getVisibleItems());
+		Paginator<User> results = dao.paginate(querier, new Page(3, 10));
+		assertEquals("1,2,3," , results.getPages().toContent());
+		assertEquals(3, results.getCurrentPage().getNumber());
+		assertEquals(get(96,97,98,99,100), results.getVisibleItems());
 	}	
 }
