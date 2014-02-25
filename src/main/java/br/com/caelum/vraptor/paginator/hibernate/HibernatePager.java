@@ -1,6 +1,5 @@
 package br.com.caelum.vraptor.paginator.hibernate;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,10 +11,8 @@ import javax.inject.Inject;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
-import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.engine.spi.TypedValue;
-import org.hibernate.hql.internal.ast.QueryTranslatorImpl;
 import org.hibernate.internal.PagerQueryImpl;
 import org.hibernate.internal.QueryImpl;
 
