@@ -13,6 +13,7 @@ import br.com.caelum.vraptor.paginator.Pager;
 import br.com.caelum.vraptor.paginator.PagerDAOTest;
 import br.com.caelum.vraptor.paginator.Paginator;
 import br.com.caelum.vraptor.paginator.User;
+import br.com.caelum.vraptor.paginator.orm.hibernate.HibernatePager;
 import br.com.caelum.vraptor.paginator.view.Page;
 
 @SuppressWarnings("unchecked")

@@ -3,6 +3,8 @@ package br.com.caelum.vraptor.paginator.jpa;
 import org.junit.Test;
 
 import br.com.caelum.vraptor.paginator.JPADatabaseTest;
+import br.com.caelum.vraptor.paginator.orm.jpa.PaginatedManagerProducer;
+import br.com.caelum.vraptor.paginator.orm.jpa.PaginatedQuery;
 
 import static org.junit.Assert.assertEquals;
 

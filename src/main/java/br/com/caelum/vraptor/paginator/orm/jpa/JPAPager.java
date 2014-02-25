@@ -1,4 +1,4 @@
-package br.com.caelum.vraptor.paginator.jpa;
+package br.com.caelum.vraptor.paginator.orm.jpa;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;
 
 import br.com.caelum.vraptor.paginator.Pager;
 import br.com.caelum.vraptor.paginator.Paginator;
+import br.com.caelum.vraptor.paginator.orm.CountQueryProducer;
 import br.com.caelum.vraptor.paginator.view.Page;
 
 @RequestScoped
@@ -57,11 +58,7 @@ public class JPAPager implements Pager<Query>{
 		}
 		PaginatedQuery paginatedQuery = (PaginatedQuery) query;
 		String queryString = paginatedQuery.raw();
-		String countString = "select count(*) " + queryString;
-		if (queryString.toLowerCase().startsWith("select ")) {
-			int fromPosition = queryString.toLowerCase().indexOf("from");
-			countString = "select count(*) " + queryString.substring(fromPosition);
-		} 
+		String countString = CountQueryProducer.of(queryString);
 					
 		List<T> partialList = query.setMaxResults(currentPage.getElements())
 				.setFirstResult(currentPage.getStartingElement()).getResultList();

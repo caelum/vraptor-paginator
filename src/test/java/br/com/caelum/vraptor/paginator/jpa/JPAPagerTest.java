@@ -11,6 +11,9 @@ import br.com.caelum.vraptor.paginator.Pager;
 import br.com.caelum.vraptor.paginator.PagerDAOTest;
 import br.com.caelum.vraptor.paginator.Paginator;
 import br.com.caelum.vraptor.paginator.User;
+import br.com.caelum.vraptor.paginator.orm.jpa.JPAPager;
+import br.com.caelum.vraptor.paginator.orm.jpa.PaginatedManagerProducer;
+import br.com.caelum.vraptor.paginator.orm.jpa.PaginatedQuery;
 import br.com.caelum.vraptor.paginator.view.Page;
 
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package br.com.caelum.vraptor.paginator.jpa;
+package br.com.caelum.vraptor.paginator.orm.jpa;
 
 import javax.persistence.Query;
 

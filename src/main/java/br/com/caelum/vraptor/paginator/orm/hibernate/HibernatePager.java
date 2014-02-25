@@ -1,4 +1,4 @@
-package br.com.caelum.vraptor.paginator.hibernate;
+package br.com.caelum.vraptor.paginator.orm.hibernate;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +18,7 @@ import org.hibernate.internal.QueryImpl;
 
 import br.com.caelum.vraptor.paginator.Pager;
 import br.com.caelum.vraptor.paginator.Paginator;
+import br.com.caelum.vraptor.paginator.orm.CountQueryProducer;
 import br.com.caelum.vraptor.paginator.view.Page;
 
 @RequestScoped
@@ -47,15 +48,10 @@ public class HibernatePager implements Pager<Query> {
 		return new Paginator<T>(partialList, currentPage, pageCount);
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public <T> Paginator<T> paginate(Query query, Page currentPage) {		
 		String queryString = query.getQueryString();
-		String countString = "select count(*) " + queryString;
-		if (queryString.toLowerCase().startsWith("select ")) {
-			int fromPosition = queryString.toLowerCase().indexOf("from");
-			countString = "select count(*) " + queryString.substring(fromPosition);
-		}
+		String countString = CountQueryProducer.of(queryString);
 		
 		List<T> partialList = query.setMaxResults(currentPage.getElements())
 				.setFirstResult(currentPage.getStartingElement()).list();
