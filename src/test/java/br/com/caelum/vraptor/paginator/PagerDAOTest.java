@@ -1,14 +1,13 @@
 package br.com.caelum.vraptor.paginator;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.Session;
 import org.junit.Test;
 
 import br.com.caelum.vraptor.paginator.view.Page;
+
+import static org.junit.Assert.assertEquals;
 
 @SuppressWarnings({"unchecked","rawtypes"})
 public abstract class PagerDAOTest extends JPADatabaseTest {

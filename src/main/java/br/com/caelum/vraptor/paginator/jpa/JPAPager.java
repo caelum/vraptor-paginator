@@ -13,13 +13,11 @@ import javax.persistence.criteria.Root;
 
 import br.com.caelum.vraptor.paginator.Pager;
 import br.com.caelum.vraptor.paginator.Paginator;
-import br.com.caelum.vraptor.paginator.Pair;
-import br.com.caelum.vraptor.paginator.Querier;
 import br.com.caelum.vraptor.paginator.view.Page;
 
 @RequestScoped
 @SuppressWarnings("unchecked")
-public class JPAPager implements Pager<Querier<Pair<Query>>>{
+public class JPAPager implements Pager<Query>{
 
 	private final EntityManager manager;
 
@@ -48,22 +46,23 @@ public class JPAPager implements Pager<Querier<Pair<Query>>>{
 		countCriteria.select(criteriaBuilder.count(countRoot));
 		TypedQuery<Number> countQuery = manager.createQuery(countCriteria);
 		int pageCount = countToPageCount(countQuery.getSingleResult(), currentPage);
+		
 		return new Paginator<T>(partialList, currentPage, pageCount);
 	}
 
 	@Override
-	public <T> Paginator<T> paginate(Querier<Pair<Query>> querier, Page currentPage) {
-		Pair<Query> pair = querier.execute();
-		
-		String queryString = pair.getRawQuery();
-		String countString = "select count("+querier.getPrefix()+") " + queryString;
+	public <T> Paginator<T> paginate(Query query, Page currentPage) {
+		if(!(query instanceof PaginatedQuery)){
+			throw new IllegalArgumentException("Query parameter must implement PaginatedQuery. Use PaginatedManagerProducer to produces this object");
+		}
+		PaginatedQuery paginatedQuery = (PaginatedQuery) query;
+		String queryString = paginatedQuery.raw();
+		String countString = "select count(*) " + queryString;
 		if (queryString.toLowerCase().startsWith("select ")) {
 			int fromPosition = queryString.toLowerCase().indexOf("from");
-			countString = "select count("+querier.getPrefix()+") " + queryString.substring(fromPosition);
+			countString = "select count(*) " + queryString.substring(fromPosition);
 		} 
-				
-		Query query = pair.getQuery();			
-		
+					
 		List<T> partialList = query.setMaxResults(currentPage.getElements())
 				.setFirstResult(currentPage.getStartingElement()).getResultList();
 
