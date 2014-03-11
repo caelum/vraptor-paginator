@@ -3,17 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.caelum.vraptor</groupId>
-	<artifactId>vraptor-form</artifactId>
+	<artifactId>vraptor-paginator</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<scm>
-		<url>http://github.com/caelum/vraptor-form</url>
-		<connection>scm:git:git://github.com/caelum/vraptor-form</connection>
-		<developerConnection>scm:git:git@github.com:caelum/vraptor-form.git</developerConnection>
+		<url>http://github.com/caelum/vraptor-paginator</url>
+		<connection>scm:git:git://github.com/caelum/vraptor-paginator</connection>
+		<developerConnection>scm:git:git@github.com:caelum/vraptor-paginator.git</developerConnection>
 	</scm>
 
-	<name>vraptor-form</name>
+	<name>vraptor-paginator</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
