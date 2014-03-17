@@ -21,7 +21,7 @@ import br.com.caelum.vraptor.paginator.view.Page;
 @RequestScoped
 @SuppressWarnings("unchecked")
 @Alternative
-public class JPAPager implements Pager<Query>{
+public class JPAPager implements Pager<JPAPaginatedQuery>{
 
 	private final EntityManager manager;
 
@@ -56,12 +56,8 @@ public class JPAPager implements Pager<Query>{
 	}
 
 	@Override
-	public <T> Paginator<T> paginate(Query query, Page currentPage) {
-		if(!(query instanceof PaginatedQuery)){
-			throw new IllegalArgumentException("Query parameter must implement PaginatedQuery. Use PaginatedManagerProducer to produces this object");
-		}
-		PaginatedQuery paginatedQuery = (PaginatedQuery) query;
-		String queryString = paginatedQuery.raw();
+	public <T> Paginator<T> paginate(JPAPaginatedQuery query, Page currentPage) {
+		String queryString = query.raw();
 		String countString = CountQueryProducer.of(queryString);
 					
 		List<T> partialList = query.setMaxResults(currentPage.getElements())

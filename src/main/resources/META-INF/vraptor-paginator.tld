@@ -7,7 +7,7 @@
     <uri>http://caelum.com.br/vraptor/plugins/paginator</uri>  
       
      <tag-file>  
-        <name>paginator</name>  
-        <path>/META-INF/tags/paginator.tag</path>                
+        <name>roller</name>  
+        <path>/META-INF/tags/roller.tag</path>                
      </tag-file>  
 </taglib>   
