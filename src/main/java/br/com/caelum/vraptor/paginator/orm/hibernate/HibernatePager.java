@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 
 import org.hibernate.Query;
@@ -23,6 +24,7 @@ import br.com.caelum.vraptor.paginator.view.Page;
 
 @RequestScoped
 @SuppressWarnings("unchecked")
+@Alternative
 public class HibernatePager implements Pager<Query> {
 
 	private final Session session;

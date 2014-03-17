@@ -21,7 +21,7 @@ public class JPADatabaseTest {
 	
 	@BeforeClass
 	public static void startup() {
-		factory = Persistence.createEntityManagerFactory("default");
+		factory = Persistence.createEntityManagerFactory("test");
 	}
 
 	protected EntityManager manager;

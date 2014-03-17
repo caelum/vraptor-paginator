@@ -3,6 +3,8 @@ package br.com.caelum.vraptor.paginator.orm.jpa;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Parameter;
 import javax.persistence.Query;
@@ -18,10 +20,12 @@ import br.com.caelum.vraptor.paginator.view.Page;
 
 @RequestScoped
 @SuppressWarnings("unchecked")
+@Alternative
 public class JPAPager implements Pager<Query>{
 
 	private final EntityManager manager;
 
+	@Inject
 	public JPAPager(EntityManager session) {
 		this.manager = session;
 	}
@@ -63,7 +67,7 @@ public class JPAPager implements Pager<Query>{
 		List<T> partialList = query.setMaxResults(currentPage.getElements())
 				.setFirstResult(currentPage.getStartingElement()).getResultList();
 
-		Query countQuery = manager.createQuery(countString);
+		Query countQuery = manager.createQuery(countString);		
 		for(Parameter<?> p : query.getParameters()){
 			countQuery.setParameter(p.getName(),query.getParameterValue(p.getName()));
 		}
