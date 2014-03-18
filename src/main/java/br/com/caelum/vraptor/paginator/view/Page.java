@@ -4,8 +4,8 @@ public class Page {
 
 	public static final int DEFAULT_NUMBER_OF_ELEMENTS = 10;
 
-	private final int number;
-	private final int numberOfElements;
+	private int number;
+	private int numberOfElements;
 
 	public Page() {
 		this(1, DEFAULT_NUMBER_OF_ELEMENTS);
@@ -22,12 +22,14 @@ public class Page {
 		this.numberOfElements = numberOfElements;
 	}
 
-	public Page number(int pageNumber) {
-		return new Page(pageNumber, numberOfElements);
+	public Page setNumber(int pageNumber) {
+		this.number = pageNumber;
+		return this;
 	}
 
-	public Page with(int elements) {
-		return new Page(number, elements);
+	public Page setElements(int elements) {
+		this.numberOfElements = elements;
+		return this;
 	}
 
 	public int getElements() {
