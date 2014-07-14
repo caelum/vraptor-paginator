@@ -57,8 +57,8 @@ This tag just encapsulate a simple foreach. Take a look.
     </c:forEach>
     
 ```
-It is not complicated just to implement your version of a pagination. The `getClasses` method is responsible to
-return a css class that can be applied to the <li> element. VRaptor-paginator has a three different types of
+It is not complicated, if you need to implement your version of a pagination. The `getClasses` method is responsible to
+return a css class that can be applied to the `<li>` element. VRaptor-paginator has a three different types of
 a <a href="https://github.com/caelum/vraptor-paginator/blob/master/src/main/java/br/com/caelum/vraptor/paginator/view/PageDefinition.java">
 PageDefinition</a>. Let's see the `CurrentPage` implementation:
 
