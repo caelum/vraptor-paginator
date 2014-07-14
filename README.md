@@ -1,5 +1,18 @@
 #VRaptor-paginator
 
+##Installing
+
+Add to your pom:
+
+```
+  <dependency>
+  	<groupId>br.com.caelum.vraptor</groupId>
+  	<artifactId>vraptor-paginator</artifactId>
+  	<version>4.0.0-SNAPSHOT</version>
+  </dependency>
+  
+```
+
 ##Example with JPA
 
 ```
