@@ -13,7 +13,6 @@ public class CountQueryProducer {
 			Matcher matcher = aliasPattern.matcher(original);
 			matcher.matches();
 			String selectClause = matcher.group(2);
-			System.out.println(selectClause);
 			int fromPosition = original.toLowerCase().indexOf("from");
 			countString = "select count(" + selectClause + ") " + original.substring(fromPosition);
 		}
