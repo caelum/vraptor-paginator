@@ -1,10 +1,10 @@
-#VRaptor-paginator
+# VRaptor-paginator
 
-##Installing
+## Installing
 
 Add to your pom:
 
-```
+```xml
   <dependency>
   	<groupId>br.com.caelum.vraptor</groupId>
   	<artifactId>vraptor-paginator</artifactId>
@@ -13,9 +13,9 @@ Add to your pom:
   
 ```
 
-##Example with JPA
+## Example with JPA
 
-```
+```java
   @Inject
   private JPAPaginatedQuery query;
 
@@ -31,9 +31,9 @@ Add to your pom:
   
 ```
 
-##Example with Hibernate
+## Example with Hibernate
 
-```
+``` java
     @Inject
     private HibernatePager query;
     @Inject
@@ -51,9 +51,9 @@ Add to your pom:
 
 ```
 
-##Usage of Paginator in your view
+## Usage of Paginator in your view
 
-```
+``` java
   <paginator:roller pages="${paginator.pages}"/>
 ```
 
@@ -75,7 +75,7 @@ return a css class that can be applied to the `<li>` element. VRaptor-paginator 
 a <a href="https://github.com/caelum/vraptor-paginator/blob/master/src/main/java/br/com/caelum/vraptor/paginator/view/PageDefinition.java">
 PageDefinition</a>. Let's see the `CurrentPage` implementation:
 
-```
+``` java
     public class CurrentPage implements PageDefinition {
 
     	private final String content;
